@@ -1,0 +1,61 @@
+{
+  "format": "campus360-backup-manifest/v1",
+  "backup_id": "2026-10-19T165537Z",
+  "project_ref": "amtjrfkwbwsihhjzhorv",
+  "exported_at": "2026-10-19T16:55:37.481636+00:00",
+  "encrypted_file": "application-data.enc.json",
+  "encrypted_file_bytes": 45824,
+  "encrypted_file_sha256": "ed6f94ca707b511dfe79863df970dcc90cff1e7b0eeba1d4f30b2e1e3750aa98",
+  "payload_bytes": 117165,
+  "payload_sha256": "f3e94ef2d62ce75a52568c576225e8d5c0e27ebd0c80acf18e5e71fe1d0f4ca7",
+  "algorithm": "AES-256-GCM",
+  "snapshot_method": "Single read-only SELECT statement; all application rows share one PostgreSQL statement snapshot.",
+  "row_counts": {
+    "public.c360_users": 17,
+    "public.c360_audits": 58,
+    "public.c360_events": 27,
+    "public.c360_roster": 13,
+    "public.c360_gateway": 1,
+    "public.c360_recovery": 0,
+    "public.c360_sessions": 31,
+    "public.c360_reporters": 10,
+    "public.c360_complaints": 10,
+    "public.c360_attachments": 5,
+    "public.c360_auth_limits": 27,
+    "public.c360_issue_support": 3
+  },
+  "total_rows": 202,
+  "schema_metadata_counts": {
+    "tables": 12,
+    "columns": 59,
+    "indexes": 24,
+    "policies": 12,
+    "routines": 17,
+    "triggers": 3,
+    "extensions": 5,
+    "constraints": 37
+  },
+  "exclusions": [
+    "Managed auth schema (including password hashes and identities)",
+    "Vault secret values and encryption key material",
+    "Storage object bytes and storage schema metadata",
+    "Edge Function runtime secrets, Cloudflare secrets and account settings",
+    "Other Supabase internal schemas"
+  ],
+  "recovery_limits": [
+    "Application-data export only; not a full Supabase disaster recovery backup or pg_dump.",
+    "Names, USNs and audit fields retain their original encryption. Existing Vault keys are required to use them.",
+    "auth_id references require the corresponding existing Supabase Auth accounts. Auth password hashes are not included.",
+    "Attachment records reference existing private Storage files; uploaded bytes are not included.",
+    "Session, activation, recovery and gateway values are included only as currently stored hashes. Never restore session/security-state rows blindly.",
+    "Schema metadata and function definitions are for review; this is not an automatically installable schema migration."
+  ],
+  "verification": {
+    "database_transfer_length_and_checksum": "passed",
+    "all_table_row_counts": "passed",
+    "encryption_decryption_byte_for_byte_round_trip": "passed",
+    "wrong_key_rejected": "passed",
+    "tampered_ciphertext_rejected": "passed",
+    "database_restore_test": "not performed; production database unchanged"
+  }
+}

@@ -68,3 +68,8 @@ lib/session-cookie-built.mjs
 
 # Generated Vinext build secrets must stay local.
 /dist/**/vinext-server.json
+
+# Keep database recovery keys and decrypted exports outside Git.
+**/CAMPUS360_Recovery_Key_*.json
+**/*.decrypted.json
+**/*.plaintext.json

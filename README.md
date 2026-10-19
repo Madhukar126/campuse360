@@ -127,3 +127,8 @@ The original hosting manifest is retained for traceability. Local commands do no
 GitHub import note: the two generated secret-bearing configuration files were added after explicit owner approval for this private repository. API keys, gateway credentials, passwords and database records are still excluded. Run `pnpm build:cloudflare` before deploying.
 
 Verified for this export: file inventory, archive integrity, secret-pattern checks, local test suite, TypeScript and build. macOS/Safari end-to-end use has not been verified here.
+
+
+## Encrypted application-data backup
+
+The 2026-10-19 snapshot contains 202 records across all 12 CAMPUS360 application tables plus schema metadata. See [backup scope and recovery instructions](backups/README.md). The encrypted export and manifest are committed under `backups/2026-10-19T165537Z/`; the recovery key is delivered separately and is not in GitHub. Managed Auth records, Vault keys, uploaded evidence bytes and runtime secrets require separate recovery arrangements.
