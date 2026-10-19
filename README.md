@@ -80,7 +80,7 @@ Then deploy:
 npx --yes wrangler@4.151.1 deploy --config dist/cloudflare/wrangler.json
 ```
 
-The existing Worker already has its encrypted `SUPABASE_GATEWAY_TOKEN` configured. A normal redeploy keeps that secret; no new secret is needed. Run the build before deployment. Two generated `vinext-server.json` files are intentionally omitted because they contain per-build secrets. The build regenerates those files locally; never commit them.
+The existing Worker already has its encrypted `SUPABASE_GATEWAY_TOKEN` configured. A normal redeploy keeps that secret; no new secret is needed. Run the build before deployment. The two generated `vinext-server.json` files are included at the owner’s explicit request after verifying this repository is private. They contain per-build secrets. Rebuild before deployment to generate fresh values, and remove these files before making the repository public.
 
 The direct Worker wrapper strips visitor-supplied ChatGPT identity/provisioning headers. Do not add `OWNER_EMAIL` or `ACCOUNT_PROVISION_TOKEN` to direct Cloudflare hosting. No D1/R2 resource is required for the active application.
 
@@ -118,10 +118,12 @@ Open `http://localhost:8000`. Use HTTP; module imports may not work by double-cl
 
 ## 8. Included and excluded
 
-Included: all tracked code from the official snapshot, the campus asset, frontend/server build assets (excluding generated secret configuration), public service addresses and deployment identifiers, dependency lockfile, tests, documentation and the static demo.
+Included: all tracked code from the official snapshot, the campus asset, frontend/server build assets, including the explicitly approved private-repository generated configuration, public service addresses and deployment identifiers, dependency lockfile, tests, documentation and the static demo.
 
 Excluded: `.git`, `node_modules`, actual environment files, cookies, OAuth tokens, API/service secrets, production gateway plaintext, account passwords, user database records, evidence uploads and Vault encryption keys. Some test files contain clearly synthetic fixture values; they are not production credentials.
 
 The original hosting manifest is retained for traceability. Local commands do not publish to Sites or change its access settings. Database authentication and encryption remain on the backend.
 
-GitHub import note: two generated secret-bearing configuration files were excluded from this repository. Run `pnpm build:cloudflare` before deploying.\n\nVerified for this export: file inventory, archive integrity, secret-pattern checks, local test suite, TypeScript and build. macOS/Safari end-to-end use has not been verified here.
+GitHub import note: the two generated secret-bearing configuration files were added after explicit owner approval for this private repository. API keys, gateway credentials, passwords and database records are still excluded. Run `pnpm build:cloudflare` before deploying.
+
+Verified for this export: file inventory, archive integrity, secret-pattern checks, local test suite, TypeScript and build. macOS/Safari end-to-end use has not been verified here.

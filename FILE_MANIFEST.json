@@ -1364,10 +1364,20 @@
       "path": "vite.config.ts",
       "bytes": 3115,
       "sha256": "6f6d890794fbe23f3e35cceb327f49d5977432a5aaf715e040a6408932da395b"
+    },
+    {
+      "path": "dist/server/vinext-server.json",
+      "bytes": 86,
+      "sha256": "b2cc52099630c21ac0574cac446ded1318ec2a9c77e6976699e50ff2feb698f2"
+    },
+    {
+      "path": "dist/server/ssr/vinext-server.json",
+      "bytes": 86,
+      "sha256": "b2cc52099630c21ac0574cac446ded1318ec2a9c77e6976699e50ff2feb698f2"
     }
   ],
   "source_coverage": "175 tracked files included, excluding the generated TypeScript cache",
-  "secret_scan": "No configured secret patterns or known live passwords found",
+  "secret_scan": "Generated prerenderSecret values explicitly authorized for this private repository; other configured secret patterns and known live account passwords excluded.",
   "checks": [
     "Local test suite passed",
     "TypeScript passed",
@@ -1375,5 +1385,5 @@
     "Cloudflare Worker dry-run passed",
     "Archive integrity passed"
   ],
-  "github_import_note": "Generated Vinext secret configuration omitted. README, .gitignore and EXPORT_INFO.json were updated for GitHub; their old export hashes are omitted here."
+  "github_import_note": "Generated Vinext configuration included after explicit owner approval for the private repository; rebuild before deployment. Application secrets and database records remain excluded."
 }

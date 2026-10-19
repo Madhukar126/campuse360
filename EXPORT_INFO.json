@@ -6,7 +6,7 @@
   "cloudflare_site": "https://campus360.studentvoice.workers.dev",
   "cloudflare_published_status": "Older deployment; later updates require authorized redeployment",
   "includes_live_database_records": false,
-  "includes_secrets": false,
+  "includes_secrets": true,
   "export_changes": [
     "portable setup scripts",
     "VS Code workspace",
@@ -15,10 +15,13 @@
   ],
   "github_import": {
     "repository": "Madhukar126/campuse360",
-    "excluded_generated_secret_files": [
-      "dist/server/ssr/vinext-server.json",
-      "dist/server/vinext-server.json"
+    "excluded_generated_secret_files": [],
+    "requires_rebuild_before_deployment": true,
+    "generated_secret_files_approved": [
+      "dist/server/vinext-server.json",
+      "dist/server/ssr/vinext-server.json"
     ],
-    "requires_rebuild_before_deployment": true
-  }
+    "repository_private_verified": true
+  },
+  "secret_scope": "Generated Vinext prerender secrets only, explicitly approved for the private repository. No API keys, gateway credentials, account passwords or database records."
 }
