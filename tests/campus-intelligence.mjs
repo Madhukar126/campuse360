@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {classifyIssue,similarCampusIssues,queueBrief,extractSummary} from '../lib/campus-intelligence.mjs';
+const cases=[['repair classroom fan','Infrastructure'],['internet router disconnecting','IT & connectivity'],['water tap leaking','Water & sanitation'],['college bus route delay','Transport'],['exam marks timetable','Academics'],['hostel mess meals poor','Hostel'],['basketball court net damaged','Sports & recreation'],['girls hostel water tap leaking','Girls’ hostel'],['boys hostel wifi slow','Boys’ hostel']];
+for(const [text,category]of cases)assert.equal(classifyIssue(text).category,category,text);
+assert.equal(classifyIssue('qwerty xyz').category,'Other');assert.equal(classifyIssue('').uncertain,true);
+const issue={id:'public',visibility:'campus',status:'Submitted',title:'Water purifier broken',description:'Water purifier unavailable near Block B',location:'Block B',category:'Water & sanitation'};
+const matches=similarCampusIssues('water purifier broken block b',[issue,{...issue,id:'secret',visibility:'private'},{...issue,id:'done',status:'Closed'},{...issue,id:'resolved',status:'Resolved'}]);
+assert.equal(matches.length,1);assert.equal(matches[0].id,'public');assert.ok(!('description'in matches[0]));assert.equal(similarCampusIssues('a', [issue]).length,0);assert.equal(similarCampusIssues('water purifier', [{...issue,visibility:'private'}]).length,0);
+const brief=queueBrief([{...issue,deadline:'2020-01-01'},{...issue,status:'Resolved',deadline:'2020-01-01'},{...issue,status:'Reopened',deadline:''}],'2026-10-19');assert.equal(brief.active,2);assert.equal(brief.overdue,1);assert.equal(brief.reopened,1);assert.equal(queueBrief([],'2026-10-19').active,0);
+const source='Water supply stopped. The purifier is offline. Water access is limited. A repair request was raised. Please restore water supply.';const excerpts=extractSummary(source);assert.equal(excerpts.length,3);assert.ok(excerpts.every(s=>source.includes(s)));assert.deepEqual(extractSummary('Short report.'),['Short report.']);
+console.log('Local intelligence: 9 category checks, unknown-language abstention, private/closed match exclusion, brief counts and source-only excerpts passed.');

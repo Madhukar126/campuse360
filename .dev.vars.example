@@ -1,0 +1,5 @@
+# Copy to .dev.vars for local development. Never commit the completed file.
+SUPABASE_PORTAL_URL="https://amtjrfkwbwsihhjzhorv.supabase.co/functions/v1/campus-portal"
+# Fill locally using the existing securely held gateway credential.
+SUPABASE_GATEWAY_TOKEN=""
+# Do not set OWNER_EMAIL or ACCOUNT_PROVISION_TOKEN for direct Cloudflare hosting.

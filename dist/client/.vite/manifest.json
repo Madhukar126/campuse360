@@ -1,0 +1,162 @@
+{
+  "../../sites/campus360-secure/node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.0.2_vite@8.0.13_@types+node@22.19.19_esbuild_83db80f580ed9bdd6c2d1523b512e93c/node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js": {
+    "file": "_next/static/chunks/app-route-prefetch-policy-DA-xo08b.js",
+    "name": "app-route-prefetch-policy",
+    "src": "../../sites/campus360-secure/node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.0.2_vite@8.0.13_@types+node@22.19.19_esbuild_83db80f580ed9bdd6c2d1523b512e93c/node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "virtual:vinext-app-browser-entry"
+    ]
+  },
+  "../../sites/campus360-secure/node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.0.2_vite@8.0.13_@types+node@22.19.19_esbuild_83db80f580ed9bdd6c2d1523b512e93c/node_modules/vinext/dist/shims/layout-segment-context.js": {
+    "file": "_next/static/chunks/layout-segment-context-C0kyeIhk.js",
+    "name": "layout-segment-context",
+    "src": "../../sites/campus360-secure/node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.0.2_vite@8.0.13_@types+node@22.19.19_esbuild_83db80f580ed9bdd6c2d1523b512e93c/node_modules/vinext/dist/shims/layout-segment-context.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "virtual:vinext-app-browser-entry",
+      "_framework-D_rUT4EX.js"
+    ]
+  },
+  "../../sites/campus360-secure/node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.0.2_vite@8.0.13_@types+node@22.19.19_esbuild_83db80f580ed9bdd6c2d1523b512e93c/node_modules/vinext/dist/shims/streamed-icons.js": {
+    "file": "_next/static/chunks/streamed-icons-tr6xnzDJ.js",
+    "name": "streamed-icons",
+    "src": "../../sites/campus360-secure/node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.0.2_vite@8.0.13_@types+node@22.19.19_esbuild_83db80f580ed9bdd6c2d1523b512e93c/node_modules/vinext/dist/shims/streamed-icons.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_framework-D_rUT4EX.js"
+    ]
+  },
+  "_framework-D_rUT4EX.js": {
+    "file": "_next/static/chunks/framework-D_rUT4EX.js",
+    "name": "framework",
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js"
+    ]
+  },
+  "_invitations-B5YcZWeg.js": {
+    "file": "_next/static/chunks/invitations-B5YcZWeg.js",
+    "name": "invitations"
+  },
+  "_report-assistance-lu69L39P.js": {
+    "file": "_next/static/chunks/report-assistance-lu69L39P.js",
+    "name": "report-assistance"
+  },
+  "_rolldown-runtime-C60lm6uB.js": {
+    "file": "_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+    "name": "rolldown-runtime"
+  },
+  "_shield-check-VdgBdxYN.js": {
+    "file": "_next/static/chunks/shield-check-VdgBdxYN.js",
+    "name": "shield-check",
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_framework-D_rUT4EX.js"
+    ]
+  },
+  "app/account-tools.tsx": {
+    "file": "_next/static/chunks/account-tools-CLtHh97i.js",
+    "name": "account-tools",
+    "src": "app/account-tools.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_invitations-B5YcZWeg.js",
+      "_framework-D_rUT4EX.js"
+    ]
+  },
+  "app/admin-analytics.tsx": {
+    "file": "_next/static/chunks/admin-analytics-BAKPNWp4.js",
+    "name": "admin-analytics",
+    "src": "app/admin-analytics.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_framework-D_rUT4EX.js"
+    ]
+  },
+  "app/admin-brief.tsx": {
+    "file": "_next/static/chunks/admin-brief-B4mFjcal.js",
+    "name": "admin-brief",
+    "src": "app/admin-brief.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_report-assistance-lu69L39P.js",
+      "_framework-D_rUT4EX.js"
+    ]
+  },
+  "app/audit-history.tsx": {
+    "file": "_next/static/chunks/audit-history-dRKM7PGn.js",
+    "name": "audit-history",
+    "src": "app/audit-history.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_shield-check-VdgBdxYN.js",
+      "_framework-D_rUT4EX.js"
+    ]
+  },
+  "app/page.tsx": {
+    "file": "_next/static/chunks/page-DqW0YsAU.js",
+    "name": "page",
+    "src": "app/page.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "virtual:vinext-app-browser-entry",
+      "_invitations-B5YcZWeg.js",
+      "_shield-check-VdgBdxYN.js",
+      "_framework-D_rUT4EX.js"
+    ],
+    "dynamicImports": [
+      "app/report-assistant.tsx",
+      "app/roster-tools.tsx",
+      "app/admin-brief.tsx",
+      "app/admin-analytics.tsx",
+      "app/audit-history.tsx",
+      "app/account-tools.tsx"
+    ]
+  },
+  "app/report-assistant.tsx": {
+    "file": "_next/static/chunks/report-assistant-D_TQHBK_.js",
+    "name": "report-assistant",
+    "src": "app/report-assistant.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_report-assistance-lu69L39P.js",
+      "_framework-D_rUT4EX.js"
+    ]
+  },
+  "app/roster-tools.tsx": {
+    "file": "_next/static/chunks/roster-tools-C5CjZL4M.js",
+    "name": "roster-tools",
+    "src": "app/roster-tools.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_invitations-B5YcZWeg.js",
+      "_framework-D_rUT4EX.js"
+    ]
+  },
+  "virtual:vinext-app-browser-entry": {
+    "file": "_next/static/chunks/index-CzSEk3rD.js",
+    "name": "index",
+    "src": "virtual:vinext-app-browser-entry",
+    "isEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_framework-D_rUT4EX.js"
+    ],
+    "dynamicImports": [
+      "../../sites/campus360-secure/node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.0.2_vite@8.0.13_@types+node@22.19.19_esbuild_83db80f580ed9bdd6c2d1523b512e93c/node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js",
+      "virtual:vinext-app-browser-entry",
+      "../../sites/campus360-secure/node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.0.2_vite@8.0.13_@types+node@22.19.19_esbuild_83db80f580ed9bdd6c2d1523b512e93c/node_modules/vinext/dist/shims/layout-segment-context.js",
+      "app/page.tsx",
+      "../../sites/campus360-secure/node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.0.2_vite@8.0.13_@types+node@22.19.19_esbuild_83db80f580ed9bdd6c2d1523b512e93c/node_modules/vinext/dist/shims/streamed-icons.js"
+    ]
+  }
+}

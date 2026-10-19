@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {startIssueRefresh} from '../lib/issue-refresh.mjs';
+let visible=true,wake,task,timerCount=0,calls=0,errors=0,resolve,signal,removed=false;
+const refresh=s=>{calls++;signal=s;return new Promise(r=>resolve=r);};
+const stop=startIssueRefresh({refresh,onError:()=>errors++,isVisible:()=>visible,subscribeWake:fn=>{wake=fn;return()=>{removed=true}},schedule:(fn,ms)=>{assert.equal(ms,15000);task=fn;timerCount++;return 1;},cancel:()=>{task=null}});
+assert.equal(calls,1);
+wake();wake();assert.equal(calls,1,'Focus events must not overlap a request');
+resolve();await new Promise(r=>setImmediate(r));assert.equal(timerCount,1);
+visible=false;await task();assert.equal(calls,1,'Hidden tabs must not fetch');
+visible=true;wake();assert.equal(calls,2,'Returning to the tab must refresh');
+stop();assert.ok(signal.aborted);assert.ok(removed);resolve();await new Promise(r=>setImmediate(r));wake();assert.equal(calls,2,'Stopped sessions must not restart');assert.equal(errors,0);
+let retry;
+const stopFailure=startIssueRefresh({refresh:async()=>{throw new Error('offline')},onError:()=>errors++,isVisible:()=>true,subscribeWake:()=>()=>{},schedule:fn=>{retry=fn;return 1;},cancel:()=>{}});
+await new Promise(r=>setImmediate(r));assert.equal(errors,1);assert.equal(typeof retry,'function','Transient failure must schedule a retry');stopFailure();
+console.log('Auto-refresh lifecycle checks passed: visibility, focus, no overlap, abort, cleanup and retry.');

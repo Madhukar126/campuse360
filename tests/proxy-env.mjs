@@ -1,0 +1,1 @@
+export const env={SUPABASE_PORTAL_URL:'https://backend.example.test/functions/v1/campus-portal',SUPABASE_GATEWAY_TOKEN:'gateway-test-secret',OWNER_EMAIL:'owner@example.test',ACCOUNT_PROVISION_TOKEN:'test-provision-token'};

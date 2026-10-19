@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {inspect,suggest} from '../lib/report-assistance.mjs';
+assert.equal(suggest('block b water not coming from yesterday').category,'Water & sanitation');
+assert.equal(suggest('wifi disconnects in library').category,'IT & connectivity');
+const text='My name is Ananya Rao. USN 1DI24DS003. ananya@example.com +91 9876543210';
+const scan=inspect(text);assert.equal(scan.findings.length,4);assert.equal(inspect(scan.redacted).findings.length,0);
+assert.equal(inspect('Water purifier is broken in Block B').findings.length,0);
+const proposal=suggest('ceiling fan broken since Monday');assert.ok(proposal.description.includes('since Monday'));assert.ok(!proposal.description.includes('urgent'));assert.equal(proposal.category,'Infrastructure');
+console.log('Report assistance: categorization, privacy redaction and factual wording checks passed.');
+assert.equal(suggest('boys hostel water purifier is broken').category,'Boys’ hostel');
+assert.equal(suggest('girls’ hostel wifi not working').category,'Girls’ hostel');
+assert.equal(suggest("girls' hostel fan broken").category,'Girls’ hostel');
+assert.equal(suggest('hostel for boys needs repairs').category,'Boys’ hostel');
+assert.equal(suggest('football playground lights broken').category,'Sports & recreation');
+assert.equal(suggest('cricket equipment unavailable for girls and boys').category,'Sports & recreation');
+assert.equal(suggest('hostel mess food quality').category,'Hostel');
+console.log('Boys/girls hostel and inclusive sports category checks passed.');

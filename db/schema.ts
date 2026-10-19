@@ -1,0 +1,9 @@
+import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
+export const users=sqliteTable('users',{id:text('id').primaryKey(),login:text('login').notNull().unique(),name:text('name').notNull(),role:text('role').notNull(),hash:text('hash').notNull(),salt:text('salt').notNull(),active:integer('active').notNull().default(1)});
+export const roster=sqliteTable('roster',{login:text('login').primaryKey(),name:text('name').notNull(),role:text('role').notNull(),code:text('code').notNull(),used:integer('used').notNull().default(0)});
+export const sessions=sqliteTable('sessions',{token:text('token').primaryKey(),userId:text('user_id').notNull(),expires:integer('expires').notNull()});
+export const complaints=sqliteTable('complaints',{id:text('id').primaryKey(),title:text('title').notNull(),description:text('description').notNull(),category:text('category').notNull(),location:text('location').notNull(),visibility:text('visibility').notNull(),status:text('status').notNull(),priority:text('priority').notNull(),deadline:text('deadline'),created:text('created').notNull()});
+export const reporters=sqliteTable('reporters',{complaintId:text('complaint_id').primaryKey(),userId:text('user_id').notNull()});
+export const events=sqliteTable('events',{id:text('id').primaryKey(),complaintId:text('complaint_id').notNull(),label:text('label').notNull(),message:text('message').notNull(),created:text('created').notNull()});
+export const attachments=sqliteTable('attachments',{id:text('id').primaryKey(),complaintId:text('complaint_id').notNull(),key:text('key').notNull(),type:text('type').notNull(),size:integer('size').notNull()});
+export const audits=sqliteTable('audits',{id:text('id').primaryKey(),actor:text('actor').notNull(),action:text('action').notNull(),target:text('target').notNull(),created:text('created').notNull()});

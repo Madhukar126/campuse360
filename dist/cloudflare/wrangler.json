@@ -1,0 +1,22 @@
+{
+  "name": "campus360",
+  "account_id": "1f974812368cacbe5c40f3c111d1f3d9",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-05-15",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "../client",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "SUPABASE_PORTAL_URL": "https://amtjrfkwbwsihhjzhorv.supabase.co/functions/v1/campus-portal"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "keep_vars": true
+}

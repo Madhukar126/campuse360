@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {classifyIssue,similarCampusIssues,extractSummary,draftingQuestions,tokens} from '../lib/campus-intelligence.mjs';
+import {inspect} from '../lib/report-assistance.mjs';
+import {evaluationCases} from './intelligence-evaluation-data.mjs';
+let correct=0;for(const [text,category]of evaluationCases)if(classifyIssue(text).category===category)correct++;
+assert.equal(correct,evaluationCases.length);console.log(`Synthetic development category checks: ${correct}/${evaluationCases.length} (baseline 18/34; not a blind real-world benchmark).`);
+assert.equal(classifyIssue('I need some help please').uncertain,true);assert.equal(classifyIssue('This is an unrelated qwerty zxvbn matter').category,'Other');
+assert.ok(classifyIssue('The faucet is leaking').evidence.includes('tap'));assert.deepEqual(tokens('wi fi hostle gymnasium'),['wifi','hostel','gym']);
+const source={id:'visible',title:'The tap is leaking',description:'Repair the tap leakage near the washroom',location:'Library',category:'Water & sanitation',status:'Submitted',visibility:'campus'};
+assert.equal(similarCampusIssues('faucet leaking near restroom',[source])[0].id,'visible');assert.deepEqual(similarCampusIssues('faucet leaking',[{...source,visibility:'private'}]),[]);
+const text='The fan is not broken. The room is warm. Ventilation is poor. Ventilation is poor. Please inspect the ventilation system.';const summary=extractSummary(text);assert.equal(summary[0],'The fan is not broken.');assert.equal(new Set(summary).size,summary.length);assert.ok(summary.every(sentence=>text.includes(sentence)));assert.ok(extractSummary(text,0).length>0);
+assert.equal(inspect('I am facing wifi problems in the library').findings.length,0);assert.equal(inspect('My name is Ananya Rao.').findings.length,1);assert.equal(inspect('Call 98765 43210').findings[0].label,'Phone number');
+assert.ok(draftingQuestions('Transport','bus delayed').some(q=>q.includes('route')));assert.ok(draftingQuestions('Other','Nothing here').some(q=>q.includes('When')));
+console.log('Synonyms, private-match isolation, explainability, first-sentence preservation, non-name text and formatted-phone tests passed.');

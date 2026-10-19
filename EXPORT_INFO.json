@@ -1,0 +1,24 @@
+{
+  "exported_at": "2026-10-19",
+  "source_commit": "0e0cce7c36a26d6399e250c7b733bc4a21885323",
+  "product_version": "1.0.0",
+  "official_site": "https://campus360-voice-secure.ranjith101ra.chatgpt.site",
+  "cloudflare_site": "https://campus360.studentvoice.workers.dev",
+  "cloudflare_published_status": "Older deployment; later updates require authorized redeployment",
+  "includes_live_database_records": false,
+  "includes_secrets": false,
+  "export_changes": [
+    "portable setup scripts",
+    "VS Code workspace",
+    "setup and deployment guides",
+    "package name/version/local convenience commands"
+  ],
+  "github_import": {
+    "repository": "Madhukar126/campuse360",
+    "excluded_generated_secret_files": [
+      "dist/server/ssr/vinext-server.json",
+      "dist/server/vinext-server.json"
+    ],
+    "requires_rebuild_before_deployment": true
+  }
+}
