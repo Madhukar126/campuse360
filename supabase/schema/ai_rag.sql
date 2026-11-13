@@ -44,19 +44,19 @@ GRANT EXECUTE ON FUNCTION campus_ai.current_campus_role() TO authenticated;
 
 ALTER TABLE campus_ai.knowledge_documents ENABLE ROW LEVEL SECURITY;
 ALTER TABLE campus_ai.knowledge_chunks ENABLE ROW LEVEL SECURITY;
-CREATE POLICY knowledge_documents_read_by_visibility ON campus_ai.knowledge_documents FOR SELECT TO authenticated
+DROP POLICY IF EXISTS knowledge_documents_read_by_visibility ON campus_ai.knowledge_documents FOR SELECT TO authenticated
 USING(status='active' AND (visibility='public' OR (visibility='staff' AND campus_ai.current_campus_role() IN ('staff','admin')) OR (visibility='admin' AND campus_ai.current_campus_role()='admin')));
-CREATE POLICY knowledge_documents_admin_insert ON campus_ai.knowledge_documents FOR INSERT TO authenticated
+DROP POLICY IF EXISTS knowledge_documents_admin_insert ON campus_ai.knowledge_documents FOR INSERT TO authenticated
 WITH CHECK(campus_ai.current_campus_role()='admin' AND created_by=campus_ai.current_user_id());
-CREATE POLICY knowledge_documents_admin_update ON campus_ai.knowledge_documents FOR UPDATE TO authenticated
+DROP POLICY IF EXISTS knowledge_documents_admin_update ON campus_ai.knowledge_documents FOR UPDATE TO authenticated
 USING(campus_ai.current_campus_role()='admin') WITH CHECK(campus_ai.current_campus_role()='admin');
-CREATE POLICY knowledge_documents_admin_delete ON campus_ai.knowledge_documents FOR DELETE TO authenticated
+DROP POLICY IF EXISTS knowledge_documents_admin_delete ON campus_ai.knowledge_documents FOR DELETE TO authenticated
 USING(campus_ai.current_campus_role()='admin');
-CREATE POLICY knowledge_chunks_read_by_document_visibility ON campus_ai.knowledge_chunks FOR SELECT TO authenticated
+DROP POLICY IF EXISTS knowledge_chunks_read_by_document_visibility ON campus_ai.knowledge_chunks FOR SELECT TO authenticated
 USING(EXISTS(SELECT 1 FROM campus_ai.knowledge_documents d WHERE d.id=document_id AND d.status='active' AND (d.visibility='public' OR (d.visibility='staff' AND campus_ai.current_campus_role() IN ('staff','admin')) OR (d.visibility='admin' AND campus_ai.current_campus_role()='admin'))));
-CREATE POLICY knowledge_chunks_admin_insert ON campus_ai.knowledge_chunks FOR INSERT TO authenticated
+DROP POLICY IF EXISTS knowledge_chunks_admin_insert ON campus_ai.knowledge_chunks FOR INSERT TO authenticated
 WITH CHECK(campus_ai.current_campus_role()='admin' AND EXISTS(SELECT 1 FROM campus_ai.knowledge_documents d WHERE d.id=document_id));
-CREATE POLICY knowledge_chunks_admin_delete ON campus_ai.knowledge_chunks FOR DELETE TO authenticated
+DROP POLICY IF EXISTS knowledge_chunks_admin_delete ON campus_ai.knowledge_chunks FOR DELETE TO authenticated
 USING(campus_ai.current_campus_role()='admin');
 
 REVOKE ALL ON ALL TABLES IN SCHEMA campus_ai FROM PUBLIC,anon;
