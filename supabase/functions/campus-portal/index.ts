@@ -6,6 +6,25 @@ const output=(d:unknown,status=200,cookie?:string)=>Response.json(d,{status,head
 const publicUser=(u:any)=>({name:u.name,login:u.login,role:u.role});
 const normalized=(s:unknown)=>String(s||'').trim().toUpperCase();
 const now=()=>new Date().toISOString();
+const b64url=(value:Uint8Array)=>{
+  let binary='';
+  for(const byte of value)binary+=String.fromCharCode(byte);
+  return btoa(binary).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');
+};
+const issueCampusAiToken=async(profile:any)=>{
+  const secret=Deno.env.get('CAMPUS360_AI_HMAC_SECRET');
+  if(!secret)throw new Error('AI service is not configured.');
+  const issued=Math.floor(Date.now()/1000);
+  const header=b64url(enc.encode(JSON.stringify({alg:'HS256',typ:'JWT'})));
+  const payload=b64url(enc.encode(JSON.stringify({
+    sub:String(profile.id),campus_role:String(profile.role),aud:'campus360-ai',iat:issued,exp:issued+300
+  })));
+  const signingInput=`${header}.${payload}`;
+  const key=await crypto.subtle.importKey('raw',enc.encode(secret),{name:'HMAC',hash:'SHA-256'},false,['sign']);
+  const signature=new Uint8Array(await crypto.subtle.sign('HMAC',key,enc.encode(signingInput)));
+  return `${signingInput}.${b64url(signature)}`;
+};
+
 export async function handler(req:Request){
  if(req.method!=='POST')return output({error:'Method not allowed'},405);
  const url=Deno.env.get('SUPABASE_URL')!;
@@ -97,6 +116,10 @@ export async function handler(req:Request){
    return output({user:publicUser(profile)},200,`campus_session=${t}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=28800`);
   }
   if(!u)return output({error:'Please log in.'},401);
+  if(b.action==='ai-token'){
+   const access_token=await issueCampusAiToken(u);
+   return output({access_token,token_type:'Bearer',expires_in:300,user:publicUser(u)});
+  }
   if(b.action==='logout'){if(token)await check(db.from('c360_sessions').delete().eq('token',await digest(token)));return output({ok:true},200,'campus_session=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0');}
   if(b.action==='change-password'){
    validatePassword();await throttle('change:'+u.id);await verifyPassword(u,String(b.currentPassword||''));
